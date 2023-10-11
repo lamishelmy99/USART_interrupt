@@ -71,7 +71,7 @@ void USART1_IRQHandler(void)
     // set led to on
     GPIOA->BSRR |= GPIO_BSRR_BS_5;
     // if received data not empty register equals 1 // there is recieved data
-    /*if(USART1->ISR & USART_ISR_RXNE)
+    if(USART1->ISR & USART_ISR_RXNE)
     {
         // store recieved data in varibale temp
         char temp = USART1->RDR;
@@ -87,38 +87,7 @@ void USART1_IRQHandler(void)
     if(USART1->ISR & USART_ISR_TXE)
     {
 
-    }*/
+    }
 
 }
 
-/*#include "mbed.h"
-#define UART_BUFFER_SIZE 128
-char uartRxBuffer[UART_BUFFER_SIZE];
-volatile uint32_t uartRxIndex = 0;
-// UART configuration
-USBSerial pc(PC_4, PC_5); // TX, RX
-// LED configuration
-DigitalOut led(PA_5);
-void onUartReceive()
-{
-    char receivedChar = pc.getc(); // Read received data
-    // Echo back the received character
-    pc.putc(receivedChar);
-    // Store the received character in the buffer (optional)
-    if (uartRxIndex < UART_BUFFER_SIZE)
-    {
-        uartRxBuffer[uartRxIndex] = receivedChar;
-        uartRxIndex++;
-    }
-    // Turn on the LED
-    led = 1;
-}
-int main()
-{
-    pc.attach(&onUartReceive, USBSerial::RxIrq); // Attach UART receive interrupt handler
-    while (1)
-    {
-        // Your main application code here
-        // You can process received data from uartRxBuffer if needed
-    }
-}*/
